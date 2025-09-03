@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List</title>
     <link rel="stylesheet" href="styles_i.css">
+    <link rel="manifest" href="manifest.json">
+    
 </head>
 <body>
     <div class="container">
@@ -15,13 +17,15 @@
         </form>
         <ul id="todo-list"></ul>
     </div>
-    <link rel="manifest" href="manifest.json">
+    
     <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js');
-  });
-}
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registrado:', reg.scope))
+        .catch(err => console.error('Error al registrar el Service Worker:', err));
+    });
+  }
 </script>
     <script src="script.js"></script>
 </body>
